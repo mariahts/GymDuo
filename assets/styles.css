@@ -162,6 +162,8 @@ main{padding:12px 14px calc(104px + env(safe-area-inset-bottom,0px))}
 .pstats b{font-size:19px;line-height:1.1;font-weight:800;letter-spacing:-.03em}
 .pstats span{font-size:11.5px;line-height:1.25;font-weight:600;color:var(--mut)}
 .you{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mut);background:var(--bg);border:1px solid var(--line);border-radius:99px;padding:2px 7px;margin-left:2px}
+.me{margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.me .row{margin-top:8px}
 .dots{display:flex;gap:5px;margin-top:12px}
 .dt{flex:1;height:30px;border-radius:9px;background:var(--bg);display:grid;place-items:center;font-size:11px;font-weight:700;color:var(--mut)}
 .dt.on{background:var(--ac);color:var(--onac,#fff)}
@@ -232,10 +234,10 @@ nav button:active span{transform:scale(.94)}
 #toast.on{opacity:1;transform:translate(-50%,0)}
 
 /* ============ Pantallas completas ============ */
-#pick,#spc,#wiz{position:fixed;inset:0;z-index:25;background:var(--bg);display:none;flex-direction:column;justify-content:center;padding:24px 20px;padding-top:calc(28px + env(safe-area-inset-top,0px));padding-bottom:calc(28px + env(safe-area-inset-bottom,0px));overflow-y:auto}
+#spc,#wiz{position:fixed;inset:0;z-index:25;background:var(--bg);display:none;flex-direction:column;justify-content:center;padding:24px 20px;padding-top:calc(28px + env(safe-area-inset-top,0px));padding-bottom:calc(28px + env(safe-area-inset-bottom,0px));overflow-y:auto}
 #wiz{z-index:50}
-#pick h1,#spc h1,#wiz h1{font-size:32px;line-height:1.1;margin:0 0 8px;font-weight:800}
-#pick .pt,#spc .pt,#wiz .pt{font-size:14px;margin-bottom:22px;line-height:1.45}
+#spc h1,#wiz h1{font-size:32px;line-height:1.1;margin:0 0 8px;font-weight:800}
+#spc .pt,#wiz .pt{font-size:14px;margin-bottom:22px;line-height:1.45}
 .pcs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .pc{display:flex;flex-direction:column;align-items:center;padding:18px 8px;border:1.5px solid var(--line);border-radius:22px;background:var(--card);color:var(--ink);font-size:12px}
 .pc b{font-size:19px;font-weight:800;margin-bottom:4px;letter-spacing:-.02em}
