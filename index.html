@@ -240,7 +240,7 @@ nav button:active span{transform:scale(.94)}
 
 /* ============ Pantallas completas ============ */
 #pick,#spc,#wiz{position:fixed;inset:0;z-index:25;background:var(--bg);display:none;flex-direction:column;justify-content:center;padding:24px 20px;padding-top:calc(28px + env(safe-area-inset-top,0px));padding-bottom:calc(28px + env(safe-area-inset-bottom,0px));overflow-y:auto}
-#wiz{z-index:30}
+#wiz{z-index:50}
 #pick h1,#spc h1,#wiz h1{font-size:32px;line-height:1.1;margin:0 0 8px;font-weight:800}
 #pick .pt,#spc .pt,#wiz .pt{font-size:14px;margin-bottom:22px;line-height:1.45}
 .pcs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -504,7 +504,7 @@ for(const key in L){const a=key.split("|");if(a[0]==S.p&&a[1]==S.w)L[key].s.forE
 const rows=names.map(nm=>{const byW={};let b=null;for(const key in L){const a=key.split("|");if(a[0]!==S.p||nameOf(a[2],a[3])!==nm)continue;L[key].s.forEach(s=>{const k=num(s.k),r=num(s.r);if(s.x&&k&&r){const v=e1(k,r);byW[a[1]]=Math.max(byW[a[1]]||0,v);if(!b||v>b.v)b={v,k,r}}})}
 const ws=Object.keys(byW).sort();if(!b)return"";const d=byW[ws[ws.length-1]]-byW[ws[0]];return`<b>${esc(nm)}</b><b>${f(b.k)}×${b.r}</b><span class="pt">${ws.length} sem. con datos</span><span class="${d>0?"up2":"pt"}">${ws.length>1?(d>=0?"+":"")+f(d.toFixed(1))+" kg est.":"—"}</span>`}).join("");
 $("#main").innerHTML=tiles()+`<div class="card"><h2>Semana ${S.w} · ${esc(C.n[S.p])}</h2><div class="tg">Volumen: <b>${Math.round(vol).toLocaleString("es")} kg</b> (kg × reps de series hechas)</div></div><div class="card"><h2>Mejor serie por ejercicio</h2><div class="tg">Cambio = fuerza estimada (1RM) entre la 1ª y la última semana.</div><div class="pg">${rows||'<span class="pt">Rellena peso y reps para ver tu progreso aquí.</span>'}</div></div>${closeCard()}<div class="card"><h2>Copia de seguridad</h2><div class="tg">Los datos viven en este móvil. Copia el código y guárdalo (notas, mensaje a ti mismo).</div><textarea id="bk"></textarea><button class="btn" data-a="exp">Copiar</button><button class="btn s" data-a="imp">Restaurar</button></div>`}
-function render(){if(S.d>=R.length)S.d=0;applyColor();topBar();S.tab=="ini"?ini():S.tab=="hoy"?hoy():S.tab=="cfg"?cfg():S.tab=="grp"?grp():prog();document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("on",b.dataset.v==(S.tab=="hoy"?"ini":S.tab)));$("#fab").style.display=S.tab=="hoy"?"block":"none";pickPaint();wizPaint();save()}
+function render(){if(S.d>=R.length)S.d=0;applyColor();topBar();S.tab=="ini"?ini():S.tab=="hoy"?hoy():S.tab=="cfg"?cfg():S.tab=="grp"?grp():prog();document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("on",b.dataset.v==(S.tab=="hoy"?"ini":S.tab)));$("#fab").style.display=S.tab=="hoy"?"block":"none";document.querySelector("nav").style.display=S.setup?"flex":"none";pickPaint();wizPaint();save()}
 let tm,sec=0,restTot=90;function rest(n=90){clearInterval(tm);sec=n;restTot=n;$("#rest").style.display="flex";const u=()=>{$("#rt").textContent=Math.floor(sec/60)+":"+String(sec%60).padStart(2,"0");$("#rb").style.width=(sec/restTot*100)+"%";if(sec--<=0){clearInterval(tm);try{navigator.vibrate&&navigator.vibrate(300)}catch(e){}$("#rest").style.display="none"}};u();tm=setInterval(u,1000)}
 $("#rp").onclick=()=>{sec+=30;restTot+=30};$("#rx").onclick=()=>{clearInterval(tm);$("#rest").style.display="none"};
 document.addEventListener("click",ev=>{const b=ev.target.closest("[data-a]");if(!b)return;const a=b.dataset.a,v=b.dataset.v,row=b.closest(".set"),card=b.closest(".card");
