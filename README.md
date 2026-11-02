@@ -52,13 +52,35 @@ Funciona en el móvil como una app (se puede instalar), guarda los datos en el p
 | IA | Supabase Edge Functions + Groq |
 | Distribución | PWA con service worker, desplegada en GitHub Pages |
 
+## Estructura
+
+```
+index.html                  Shell de la aplicación
+assets/styles.css           Sistema de diseño y estilos
+assets/app.js               Estado, vistas, sincronización y sugerencias
+sw.js                       Service worker (caché y modo offline)
+manifest.webmanifest        Manifest PWA
+supabase/schema.sql         Tablas, RLS y publicación realtime
+supabase/functions/suggest  Edge Function para la IA
+SETUP.md                    Guía técnica de desarrollo
+```
+
+## Desarrollo
+
+```bash
+npm start       # sirve la app en http://localhost:5173
+npm run check   # comprueba la sintaxis de assets/app.js
+```
+
+La configuración de Supabase, la función de IA y el despliegue están explicados en [SETUP.md](SETUP.md).
+
 ## Arquitectura
 
-- Aplicación completamente cliente: un único documento HTML con la lógica, el estilo y el estado, sin paso de build.
+- Aplicación completamente cliente, sin paso de build: HTML, una hoja de estilos y un único script con el estado y las vistas.
 - Sincronización opcional basada en un identificador de espacio compartido; los cambios se propagan por Realtime y se aplican solo si son más recientes que el estado local, lo que permite entrenar sin conexión y reconciliar al volver.
 - La generación de alternativas ocurre en el servidor: el cliente nunca maneja claves de API. Si la función no está disponible, la app recurre a un catálogo local de ejercicios.
 - Caché por ejercicio y límite diario de consultas para mantener el coste de la IA bajo control.
 
 ## Licencia
 
-Este proyecto es de código abierto.
+Distribuido bajo licencia [MIT](LICENSE).

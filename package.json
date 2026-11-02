@@ -1,0 +1,23 @@
+{
+  "name": "gymduo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PWA para registrar entrenamientos de fuerza en pareja o en solitario",
+  "homepage": "https://mariahts.github.io/GymDuo/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mariahts/GymDuo.git"
+  },
+  "scripts": {
+    "start": "npx serve .",
+    "check": "node --check assets/app.js"
+  },
+  "keywords": [
+    "pwa",
+    "fitness",
+    "gym",
+    "workout",
+    "supabase"
+  ],
+  "license": "MIT"
+}
