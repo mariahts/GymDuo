@@ -30,7 +30,8 @@
 
 /* ============ Base ============ */
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html{scroll-behavior:smooth;scroll-padding-top:140px}
+html{scroll-behavior:smooth;scroll-padding-top:140px;scrollbar-width:none;-ms-overflow-style:none}
+html::-webkit-scrollbar,body::-webkit-scrollbar{display:none;width:0;height:0}
 body{
   margin:0;background:var(--bg);color:var(--ink);
   font:15px/1.45 Manrope,system-ui,-apple-system,"Segoe UI",sans-serif;
@@ -104,8 +105,9 @@ main{padding:12px 14px calc(104px + env(safe-area-inset-bottom,0px))}
 .card>.btn{display:block;width:100%;margin:8px 0 0}
 .gl{display:block;border:0;background:none;color:var(--mut);font-size:13.5px;font-weight:600;padding:10px;margin:8px auto 0;text-decoration:underline;text-underline-offset:3px}
 .gl:first-of-type{margin-top:6px}
-.cb2{display:inline-block;width:16px;height:16px;border-radius:5px;border:2px solid var(--mut);vertical-align:-3px;margin-right:8px;flex:none}
+.cb2{display:inline-block;width:16px;height:16px;border-radius:5px;border:2px solid var(--mut);vertical-align:-3px;margin-right:8px;flex:none;position:relative}
 .cb2.on{background:var(--ac);border-color:var(--ac)}
+.cb2.on::after{content:"";position:absolute;left:4px;top:0;width:4px;height:8px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
 .gb{width:44px;height:44px;border-radius:13px;border:0;background:var(--bg);color:var(--ink);font-size:20px;font-weight:600}
 .gl2{display:flex;align-items:center;justify-content:center;gap:22px}
 .gl2 b{font-size:30px;font-weight:800;min-width:38px;text-align:center;letter-spacing:-.04em}
@@ -259,18 +261,12 @@ nav button:active span{transform:scale(.94)}
 
 /* ============ Escritorio ============ */
 @media (min-width:760px) and (min-height:680px){
-  html{background:#e9e9f0;min-height:100%}
-  body{
-    width:402px;height:min(872px,calc(100vh - 40px));margin:20px auto;padding:0;
-    border:8px solid #111116;border-radius:46px;box-shadow:0 40px 90px -30px rgba(0,0,0,.5);
-    transform:translateZ(0);overflow:hidden;position:relative;
-  }
-  #app{height:100%;overflow-y:auto;padding-bottom:0;scrollbar-width:none}
-  #app::-webkit-scrollbar{display:none}
-  #pick,#spc,#wiz{border-radius:38px}
-}
-@media (min-width:760px) and (min-height:680px) and (prefers-color-scheme:dark){
-  html{background:#08080b}body{border-color:#2a2a34}
+  html{background:color-mix(in srgb,var(--bg) 94%,var(--ink))}
+  body{max-width:430px;margin:0 auto;min-height:100vh;border-left:1px solid var(--line);border-right:1px solid var(--line)}
+  nav{left:50%;right:auto;transform:translateX(-50%);width:min(410px,calc(100vw - 20px))}
+  #rest{left:50%;right:auto;transform:translateX(-50%);width:min(402px,calc(100vw - 28px))}
+  #fab{right:max(16px,calc(50% - 199px))}
+  #toast{left:50%}
 }
 
 /* ============ Movimiento ============ */
