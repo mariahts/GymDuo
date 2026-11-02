@@ -157,11 +157,11 @@ main{padding:12px 14px calc(104px + env(safe-area-inset-bottom,0px))}
 .stk.sel{border-color:var(--ink)}
 .sh{display:flex;align-items:center;gap:8px;margin-bottom:10px}
 .sh b{font-size:16px;font-weight:800;letter-spacing:-.02em}
-.sr{display:flex;align-items:center;gap:8px;margin-bottom:2px}
-.fl{width:26px;height:26px;color:var(--ac);display:grid;place-items:center;flex:none}
-.fl svg{width:24px;height:24px}
-.sn{font-size:38px;line-height:1;font-weight:800;letter-spacing:-.05em}
-.sl{font-size:13.5px;font-weight:600;color:var(--mut);line-height:1.2}
+.pstats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:14px}
+.pstats>div{background:var(--card);padding:10px 9px;display:flex;flex-direction:column;gap:3px;min-width:0}
+.pstats b{font-size:19px;line-height:1.1;font-weight:800;letter-spacing:-.03em}
+.pstats span{font-size:11.5px;line-height:1.25;font-weight:600;color:var(--mut)}
+.you{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mut);background:var(--bg);border:1px solid var(--line);border-radius:99px;padding:2px 7px;margin-left:2px}
 .dots{display:flex;gap:5px;margin-top:12px}
 .dt{flex:1;height:30px;border-radius:9px;background:var(--bg);display:grid;place-items:center;font-size:11px;font-weight:700;color:var(--mut)}
 .dt.on{background:var(--ac);color:var(--onac,#fff)}
@@ -253,7 +253,7 @@ nav button:active span{transform:scale(.94)}
 .sc .cd{margin:0}
 
 /* ============ Escritorio ============ */
-@media (min-width:760px) and (min-height:680px){
+@media (min-width:520px){
   html{background:color-mix(in srgb,var(--bg) 94%,var(--ink))}
   body{max-width:430px;margin:0 auto;min-height:100vh;border-left:1px solid var(--line);border-right:1px solid var(--line)}
   nav{left:50%;right:auto;transform:translateX(-50%);width:min(410px,calc(100vw - 20px))}
