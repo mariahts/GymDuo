@@ -101,7 +101,7 @@ fb={sb,code:S.code};
 fb.chan=sb.channel("space-"+S.code).on("postgres_changes",{event:"*",schema:"public",table:"spaces",filter:"id=eq."+S.code},pl=>{if(tk!==syncTok||!pl.new)return;const c=applyCfg(pl.new.cfg);if(c==1){save();softRender()}else if(c==2)dirty.cfg=1}).on("postgres_changes",{event:"*",schema:"public",table:"profiles",filter:"space_id=eq."+S.code},pl=>{if(tk!==syncTok||!pl.new)return;const p=pl.new.profile,r=pl.new.data||{};if((r.ts||0)>(S.ts[p]||0)){apply(p,r);save();softRender()}}).subscribe(st=>{sync.st=st=="SUBSCRIBED"?"ok":(st=="TIMED_OUT"||st=="CLOSED"||st=="CHANNEL_ERROR")?"error":"pend";paint()});
 if(need)pushNow();else{sync.st="ok";paint()}
 if(ch){save();softRender()}
-}catch(e){fb=null;sync.st="offline";paint()}}
+}catch(e){fb=null;sync.st="offline";paint();if(S.joining){S.joining=0;const bad=CUR;REG=REG.filter(r=>r.id!==bad);try{localStorage.removeItem(skey(bad))}catch(e2){}syncTok++;if(prevCUR&&REG.some(r=>r.id===prevCUR))switchTo(prevCUR);else location.reload();prevCUR=null;setTimeout(()=>toast("No se pudo cargar el grupo. Revisa la conexión."),300)}}}
 
 const avt=(p,big,cc)=>{const k=cc||C,c=pal(p,k)[0];return'<span class="av'+(big?" big":"")+'" style="background:'+c+';color:'+(lum(c)>.58?"#111":"#fff")+'">'+esc((k.n[p]||"?").trim().charAt(0).toUpperCase())+'</span>'},
 ago=t=>{if(!t)return"Aún sin entrenos";const d=Math.round((new Date(new Date().toDateString())-new Date(new Date(t).toDateString()))/864e5);return d<=0?"Último: hoy":d==1?"Último: ayer":"Último: hace "+d+" días"};
@@ -112,11 +112,11 @@ function newCode(){return Array.from(typeof crypto!="undefined"&&crypto.getRando
 let wz=0,wzMe="",wzPa="",wzCd="";
 function wizPaint(){const el=$("#wiz"),on=!S.setup;el.style.display=on?"flex":"none";if(!on)return;
 const B=(a,t)=>'<button class="btn big" data-a="'+a+'">'+t+'</button>',BK='<button class="gl" data-a="wb">← Volver</button>';let h='<img src="icon-192.png" width="84" height="84" alt="" style="border-radius:20px;margin-bottom:18px;align-self:center">';
-if(wz==0)h+='<h1>Bienvenido a GymDuo</h1><div class="pt">Entrenad juntos y llevad el registro en pareja.</div><input class="wi" data-w="me" value="'+esc(wzMe)+'" placeholder="Nombre" maxlength="14" autocomplete="off" aria-label="Nombre">'+B("wp","Continuar")+'<button class="gl" data-a="wj">Tengo ya un código de GymDuo</button>';
+if(wz==0)h+='<h1>Bienvenido a GymDuo</h1><div class="pt">Entrena solo o en pareja, con la rutina y el progreso siempre a mano.</div>'+B("wp","Empezar")+'<button class="gl" data-a="wj">Tengo ya un código de GymDuo</button>';
 else if(wz==1)h+='<h1>Unirse con un código</h1><div class="pt">Pega el código que ha pasado la otra persona. Cargaremos la configuración que ya ha preparado.</div>'+(S.wzErr?'<div class="tip" style="background:var(--golds);color:var(--gold)">'+esc(S.wzErr)+'</div>':"")+'<input class="wi" data-w="cd" value="'+esc(wzCd)+'" placeholder="Pega aquí el código" autocapitalize="off" autocorrect="off" aria-label="Código">'+B("wc","Unirme")+BK;
-else if(wz==2)h+='<h1>¿Quién va a entrenar contigo?</h1><div class="pt">Nombre de la otra persona.</div><input class="wi" data-w="pa" value="'+esc(wzPa)+'" placeholder="Nombre de la otra persona" maxlength="14" autocomplete="off" aria-label="Nombre de la otra persona">'+B("wq","Continuar")+BK;
+
 else if(wz==4)h+='<h1>¿Vas a entrenar solo o acompañado?</h1><div class="pt">Podrás tener varios espacios: una rutina en solitario y dúos o grupos con otras personas, cada uno separado.</div>'+B("ws","Solo")+'<button class="btn s big" data-a="wa">Acompañado</button>'+BK;
-else h+='<h1>Este es vuestro código</h1><div class="pt">Pásaselo a '+esc(C.n.b)+'. Lo pegará al abrir GymDuo y se cargará todo lo que has configurado.</div><div class="code">'+esc((S.code.match(/.{1,5}/g)||[]).join(" "))+'</div>'+B("cc","Copiar código")+'<button class="btn s big" data-a="shc">Compartir invitación</button><button class="gl" data-a="we">Entrar a GymDuo →</button>';
+else h+='<h1>Este es el código del grupo</h1><div class="pt">Pásaselo a la otra persona. Al abrirlo en GymDuo se cargará todo lo configurado.</div><div class="code">'+esc((S.code.match(/.{1,5}/g)||[]).join(" "))+'</div>'+B("cc","Copiar código")+'<button class="btn s big" data-a="shc">Compartir invitación</button><button class="gl" data-a="we">Entrar a GymDuo →</button>';
 el.innerHTML=h}
 document.addEventListener("input",ev=>{const w=ev.target.dataset.w;if(w=="me")wzMe=ev.target.value;else if(w=="pa")wzPa=ev.target.value;else if(w=="cd")wzCd=ev.target.value;else if(w=="sj")spcCd=ev.target.value});
 const mix=(a,b,t)=>{const p=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16)),x=p(a),y=p(b);return"#"+x.map((v,i)=>Math.round(v+(y[i]-v)*t).toString(16).padStart(2,"0")).join("")},lum=h=>{const c=[1,3,5].map(i=>parseInt(h.slice(i,i+2),16)/255);return .2126*c[0]+.7152*c[1]+.0722*c[2]};
@@ -134,14 +134,15 @@ function spTitle(b){b=b||{S,C};const c=b.C||{};if((b.S||{}).kind=="solo")return"
 function findCode(code){const r=REG.find(r=>(spBlob(r.id).S||{}).code===code);return r&&r.id}
 function addSpace(blob){const id=uid();REG.push({id});try{localStorage.setItem("gd-spaces",JSON.stringify(REG));localStorage.setItem(skey(id),JSON.stringify(blob))}catch(e){}switchTo(id)}
 let syncTok=0;
-function spaceInit(){if(!C.m||!C.m.length)C.m=["a","b"];P=C.m;if(!S.kind)S.kind="duo";if(!S.code)S.code=newCode();lastStr={};P.forEach(p=>{lastStr[p]=str(p)});lastCfg=cfgStr();wz=S.wzErr?1:(S.startWz||0);if(okN(C.n.a))wzMe=C.n.a;S.w=autoW()}
+function spaceInit(){if(!C.m||!C.m.length)C.m=["a","b"];P=C.m;if(!S.kind)S.kind="duo";if(!S.code)S.code=newCode();lastStr={};P.forEach(p=>{lastStr[p]=str(p)});lastCfg=cfgStr();wz=S.wzErr?1:(S.startWz==2?3:(S.startWz||0));if(okN(C.n.a))wzMe=C.n.a;S.w=autoW()}
 function switchTo(id){save();try{fb&&fb.chan&&fb.chan.unsubscribe&&fb.chan.unsubscribe()}catch(e){}fb=null;syncTok++;clearTimeout(pushT);dirty={};sync={st:"nocode"};CUR=id;try{localStorage.setItem("gd-cur",id)}catch(e){}
 let j={};try{j=JSON.parse(localStorage.getItem(skey(id))||"{}")}catch(e){}
 L=j.L||{};H=j.H||[];S=Object.assign({p:"a",w:1,d:0,tab:"ini",setup:0,mm:{},cs:{},ts:{},code:"",mail:""},j.S||{});C=j.C||{n:{a:"Persona 1",b:"Persona 2"},c:{a:0,b:1},m:["a","b"],title:"",ts:0};R=j.R||[];
 OPEN={};shown="";repImg="";spcJoin=false;armed=0;spaceInit();S.tab=S.setup?"ini":"cfg";initSync();render();top0()}
-const baseS=k=>Object.assign({p:"a",w:1,d:0,tab:"ini",kind:k,mm:{},cs:{},ts:{},code:newCode()},k=="solo"?{setup:1,auto:1}:{setup:0,startWz:2});
-function newSpace(k){const my=C.n[ME()]||"",mc=C.c[ME()]||0,solo=k=="solo";addSpace({S:baseS(k),L:{},H:[],C:{n:solo?{a:my}:{a:my,b:"Persona 2"},c:solo?{a:mc}:{a:mc,b:(typeof mc=="number"?(mc+1)%PAL.length:1)},m:solo?["a"]:["a","b"],title:"",ts:0},R:[]})}
-function joinSpace(code){addSpace({S:Object.assign(baseS("duo"),{p:"b",setup:1,startWz:0,code,joining:1,auto:0}),L:{},H:[],C:{n:{a:"Persona 1",b:"Persona 2"},c:{a:0,b:1},m:["a","b"],title:"",ts:0},R:[]})}
+const baseS=k=>Object.assign({p:"a",w:1,d:0,tab:"ini",kind:k,mm:{},cs:{},ts:{},code:newCode()},k=="solo"?{setup:1,auto:1}:{setup:0,startWz:3});
+function newSpace(k){const my=C.n[ME()]||"Persona 1",mc=C.c[ME()]||0,solo=k=="solo";addSpace({S:baseS(k),L:{},H:[],C:{n:solo?{a:my}:{a:my,b:"Persona 2"},c:solo?{a:mc}:{a:mc,b:(typeof mc=="number"?(mc+1)%PAL.length:1)},m:solo?["a"]:["a","b"],title:"",ts:0},R:[]})}
+let prevCUR=null;
+function joinSpace(code){prevCUR=CUR;addSpace({S:Object.assign(baseS("duo"),{p:"b",setup:1,startWz:0,code,joining:1,auto:0}),L:{},H:[],C:{n:{a:"Persona 1",b:"Persona 2"},c:{a:0,b:1},m:["a","b"],title:"",ts:0},R:[]})}
 function groupsCard(){const hasSolo=REG.some(r=>(spBlob(r.id).S||{}).kind=="solo");
 return '<div class="card" id="groups"><div class="sub" style="align-items:center;margin:0"><h2 style="flex:1">Grupos</h2></div><div class="tg">Cada grupo tiene su propia rutina y sus propios datos.</div>'+REG.map(r=>{const b=spBlob(r.id),c=b.C||{n:{}},m=c.m||["a","b"],solo=(b.S||{}).kind=="solo";return'<button class="sc'+(r.id==CUR?" on":"")+'" data-a="ss" data-v="'+r.id+'"><span class="sct"><b>'+esc(spTitle(b))+'</b><small>'+(solo?"Rutina en solitario":m.length+" miembros")+'</small></span><span class="cd">›</span></button>'}).join("")+'<button class="btn s" data-a="sn">Nuevo dúo o grupo</button>'+(hasSolo?"":'<button class="btn s" data-a="sns">Espacio en solitario</button>')+(spcJoin?'<input class="wi" data-w="sj" placeholder="Pega el código del grupo" autocapitalize="off" autocorrect="off" style="margin-top:14px"><button class="btn big" data-a="sjc">Unirme</button>':'<button class="gl" data-a="sj">Tengo un código de un grupo</button>')+'</div>'}
 const dk=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"),mon=d=>{const x=new Date(d.getFullYear(),d.getMonth(),d.getDate());x.setDate(x.getDate()-(x.getDay()+6)%7);return x},SK=(w,d,p)=>(p||S.p)+"|"+w+"|"+R[d].id+"|_s",goal=()=>S.goal||Math.max(1,Math.min(R.length,3)),
@@ -256,9 +257,9 @@ else if(a=="swn"){if(SWAP){SWAP.off=(SWAP.off||0)+1;SWAP.items=suggestLocal(R[S.
 else if(a=="swai"){(async()=>{if(!SWAP)return;const i=SWAP.i;b.textContent="Consultando…";try{const items=await aiSuggest(R[S.d].x[i][0]);SWAP={i,items,off:0,note:"Sugerencias de IA · quedan "+aiLeft()+" hoy"};render()}catch(e){toast(e.message||"IA no disponible");SWAP={i,items:suggestLocal(R[S.d].x[i][0],0),off:0,note:"IA no disponible · sugerencias locales"};render()}})()}
 else if(a=="swc"){SWAP=null;render()}
 else if(a=="wj"){S.wzErr="";wz=1;render()}
-else if(a=="wb"){S.wzErr="";wz=(wz==2?4:0);render()}
+else if(a=="wb"){S.wzErr="";wz=(wz==2||wz==3?4:0);render()}
 else if(a=="ws"){C.m=["a"];P=C.m;S.kind="solo";S.setup=1;S.p="a";S.me="a";S.auto=1;S.tab="ini";wz=0;render()}
-else if(a=="wa"){wz=2;render()}
+else if(a=="wa"){wz=3;render()}
 else if(a=="cpo"){const p=b.dataset.p;CPOPEN=CPOPEN==p?null:p;if(CPOPEN)CPV=r2h(hx2(curHex(p)));render()}
 else if(a=="cpx"){cpCommit();CPOPEN=null;render()}
 else if(a=="am"){const n=P.length+1,id=String.fromCharCode(96+n);C.m.push(id);C.n[id]="Persona "+n;C.c[id]=(n-1)%PAL.length;P=C.m;lastStr[id]=str(id);render()}
@@ -279,7 +280,7 @@ else if(a=="sns"){newSpace("solo")}
 else if(a=="sj"){spcJoin=true;render()}
 else if(a=="sjc"){const v=spcCd.replace(/[^A-Za-z0-9_-]/g,"");if(v.length<16){b.textContent="Código no válido";return}joinSpace(v)}
 
-else if(a=="wp"){if(!wzMe.trim()){b.textContent="Falta el nombre";return}C.n.a=wzMe.trim();wz=4;render()}
+else if(a=="wp"){wz=4;render()}
 else if(a=="wq"){if(!wzPa.trim()){b.textContent="Escribe su nombre";return}C.n.b=wzPa.trim();wz=3;render();clearTimeout(pushT);pushNow()}
 else if(a=="cc"){try{navigator.clipboard.writeText(S.code);b.textContent="Copiado ✓"}catch(e){b.textContent="Mantén pulsado el código para copiarlo"}}
 else if(a=="we"){S.kind="duo";S.setup=1;S.p="a";S.me="a";S.auto=1;S.tab="ini";wz=0;render()}
