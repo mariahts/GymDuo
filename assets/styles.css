@@ -157,16 +157,18 @@ main{padding:12px 14px calc(104px + env(safe-area-inset-bottom,0px))}
 .stk.sel{border-color:var(--ink)}
 .sh{display:flex;align-items:center;gap:8px;margin-bottom:10px}
 .sh b{font-size:16px;font-weight:800;letter-spacing:-.02em}
-.pstats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:14px}
-.pstats>div{background:var(--card);padding:10px 9px;display:flex;flex-direction:column;gap:3px;min-width:0}
-.pstats b{font-size:19px;line-height:1.1;font-weight:800;letter-spacing:-.03em}
-.pstats span{font-size:11.5px;line-height:1.25;font-weight:600;color:var(--mut)}
-.you{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mut);background:var(--bg);border:1px solid var(--line);border-radius:99px;padding:2px 7px;margin-left:2px}
+.rk{display:flex;align-items:center;gap:11px}
+.rfl{width:42px;height:42px;flex:none;border-radius:14px;background:var(--acs);color:var(--ac);display:grid;place-items:center}
+.rfl svg{width:25px;height:25px}
+.rnum{font-size:29px;line-height:1;font-weight:800;letter-spacing:-.04em}
+.rlbl{font-size:13px;font-weight:600;color:var(--mut);margin-left:7px}
+.dt svg{width:14px;height:14px;display:block}
+.mot{margin-top:12px;padding-top:11px;border-top:1px solid var(--line);font-size:12.5px;line-height:1.45;font-weight:500;color:var(--mut);font-style:italic}
 .me{margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
 .me .row{margin-top:8px}
 .dots{display:flex;gap:5px;margin-top:12px}
 .dt{flex:1;height:30px;border-radius:9px;background:var(--bg);display:grid;place-items:center;font-size:11px;font-weight:700;color:var(--mut)}
-.dt.on{background:var(--ac);color:var(--onac,#fff)}
+.dt.on{background:var(--acs);color:var(--ac)}
 .dt.today{outline:1.5px solid var(--ink);outline-offset:1px}
 
 /* ============ Progreso ============ */
