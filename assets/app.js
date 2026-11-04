@@ -276,19 +276,19 @@ else if(a=="sp"){S.tab="ini";render();top0();setTimeout(()=>{const g=$("#groups"
 else if(a=="sx"){S.tab="hoy";render()}
 else if(a=="ss"){const id=b.dataset.v;if(id==CUR){S.tab="ini";render();top0()}else switchTo(id)}
 else if(a=="sn"){newSpace("duo")}
-else if(a=="sns"){newSpace("solo")}
+else if(a=="sns"){newSpace("solo");toast("Espacio creado. Crea la rutina para empezar.");render();setTimeout(()=>{const c=document.querySelector('[data-a="cre"]');if(c)c.closest(".card").scrollIntoView({block:"center"})},140)}
 else if(a=="sj"){spcJoin=true;render()}
 else if(a=="sjc"){const v=spcCd.replace(/[^A-Za-z0-9_-]/g,"");if(v.length<16){b.textContent="Código no válido";return}joinSpace(v)}
 
 else if(a=="wp"){wz=4;render()}
 else if(a=="wq"){if(!wzPa.trim()){b.textContent="Escribe su nombre";return}C.n.b=wzPa.trim();wz=3;render();clearTimeout(pushT);pushNow()}
 else if(a=="cc"){try{navigator.clipboard.writeText(S.code);b.textContent="Copiado ✓"}catch(e){b.textContent="Mantén pulsado el código para copiarlo"}}
-else if(a=="we"){S.kind="duo";S.setup=1;S.p="a";S.me="a";S.auto=1;S.tab="ini";wz=0;render()}
+else if(a=="we"){S.kind="duo";S.setup=1;S.p="a";S.me="a";S.auto=1;S.tab="ini";wz=0;render();window.scrollTo(0,0);if(!R.length){toast("Grupo creado. Crea la rutina para empezar.");setTimeout(()=>{const c=document.querySelector('[data-a="cre"]');if(c)c.closest(".card").scrollIntoView({block:"center"})},140)}}
 else if(a=="wc"){const v=wzCd.replace(/[^A-Za-z0-9_-]/g,"");if(v.length<16){S.wzErr="El código debe tener al menos 16 caracteres.";render();return}S.wzErr="";S.code=v;S.p="b";S.setup=1;S.joining=1;S.auto=0;S.tab="hoy";save();switchTo(CUR)}
 
 else if(a=="pk"){S.tab="ini";render();top0();setTimeout(()=>{const g=$("#groups");g&&g.scrollIntoView({block:"start",behavior:"smooth"})},60)}
 
-else if(a=="go"){if(!okN(C.n.a)||!okN(C.n.b)){b.textContent="Escribe los dos nombres";return}S.setup=1;S.tab="ini";render()}
+else if(a=="go"){if(!okN(C.n.a)||!okN(C.n.b)){b.textContent="Escribe los dos nombres";return}S.setup=1;S.tab="ini";render();window.scrollTo(0,0);if(!R.length){toast("Grupo creado. Crea la rutina para empezar.");setTimeout(()=>{const c=document.querySelector('[data-a="cre"]');if(c)c.closest(".card").scrollIntoView({block:"center"})},140)}}
 else if(a=="col"){C.c[b.dataset.p]=+b.dataset.v;render()}
 else if(a=="ad"){R.push({d:"Día "+(R.length+1),id:uid(),x:[]});render()}
 else if(a=="ax"){R[+b.dataset.di].x.push(["Nuevo ejercicio","3 x 8-12",uid()]);render()}
