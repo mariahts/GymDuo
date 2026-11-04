@@ -275,7 +275,7 @@ else if(a=="ro"){delete L[SK(S.w,S.d)];save();render()}
 else if(a=="ex"){R=JSON.parse(DEFR);S.d=0;save();render()}
 else if(a=="sp"){S.tab="ini";render();top0();setTimeout(()=>{const g=$("#groups");g&&g.scrollIntoView({block:"start",behavior:"smooth"})},60)}
 else if(a=="sx"){S.tab="hoy";render()}
-else if(a=="ss"){const id=b.dataset.v;if(id==CUR){S.tab="ini";render();top0()}else switchTo(id)}
+else if(a=="ss"){const id=b.dataset.v;if(id!=CUR)switchTo(id);S.tab="hoy";render();top0()}
 else if(a=="sn"){newSpace("duo")}
 else if(a=="sns"){newSpace("solo");toast("Espacio creado. Crea la rutina para empezar.");render();setTimeout(()=>{const c=document.querySelector('[data-a="cre"]');if(c)c.closest(".card").scrollIntoView({block:"center"})},140)}
 else if(a=="sj"){spcJoin=true;render()}
