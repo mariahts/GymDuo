@@ -6,10 +6,10 @@ GymBuddy es una aplicación web progresiva (PWA) para registrar entrenamientos d
 
 ## Para quién
 
-- **Entrenar solo** � rutina y progreso propios, sin depender de nadie.
-- **Entrenar en grupo** � dúo, trío o equipo; cada persona mantiene su propio registro dentro del mismo espacio.
-- **Acompañar y spotear** � apuntar series y cuidar la técnica de quien entrena.
-- **Guiar (coach o familia)** � supervisar la sesión de otra persona sin mezclar sus datos con los propios.
+- **Entrenar solo** — rutina y progreso propios, sin depender de nadie.
+- **Entrenar en grupo** — dúo, trío o equipo; cada persona mantiene su propio registro dentro del mismo espacio.
+- **Acompañar y spotear** — apuntar series y cuidar la técnica de quien entrena.
+- **Guiar (coach o familia)** — supervisar la sesión de otra persona sin mezclar sus datos con los propios.
 
 ## Funcionalidades
 
@@ -48,10 +48,10 @@ GymBuddy es una aplicación web progresiva (PWA) para registrar entrenamientos d
 
 ## Cómo se usa
 
-1. **Bienvenida** � elegir entrenar solo o en grupo, días por semana y objetivo. Se guarda solo.
-2. **Rutina** � crearla desde cero o cargar la de ejemplo.
-3. **Entrenar** � apuntar peso y reps, descansar entre series y sustituir ejercicios si hace falta.
-4. **Progreso** � revisar volumen, mejores marcas y evolución.
+1. **Bienvenida** — elegir entrenar solo o en grupo, días por semana y objetivo. Se guarda solo.
+2. **Rutina** — crearla desde cero o cargar la de ejemplo.
+3. **Entrenar** — apuntar peso y reps, descansar entre series y sustituir ejercicios si hace falta.
+4. **Progreso** — revisar volumen, mejores marcas y evolución.
 
 ## Stack
 
