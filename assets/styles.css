@@ -164,10 +164,22 @@ main{padding:12px 14px calc(104px + env(safe-area-inset-bottom,0px))}
 .rlbl{font-size:13px;font-weight:600;color:var(--mut);margin-left:7px}
 .dt svg{width:14px;height:14px;display:block}
 .mot{margin-top:12px;padding-top:11px;border-top:1px solid var(--line);font-size:12.5px;line-height:1.45;font-weight:500;color:var(--mut);font-style:italic}
-.plan .lbl{margin:14px 0 7px;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--mut)}
+.lbl{margin:14px 0 7px;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--mut)}
 .planrow{display:flex;align-items:center;gap:14px;margin-top:2px}
 .planrow b{min-width:26px;text-align:center;font-size:24px;font-weight:800;letter-spacing:-.02em}
 .win{display:inline-flex;align-items:center;margin-top:12px;padding:5px 10px;border-radius:999px;background:var(--golds);color:var(--gold);font-size:12px;font-weight:700}
+#planScr{position:fixed;top:0;bottom:0;left:50%;transform:translateX(-50%);width:min(430px,100%);z-index:60;background:var(--bg);display:none;overflow-y:auto;overscroll-behavior:contain}
+.pscr{min-height:100%;display:flex;align-items:center;justify-content:center;padding:calc(26px + env(safe-area-inset-top,0px)) 18px calc(26px + env(safe-area-inset-bottom,0px))}
+.pw{width:100%}
+.pw .hi{font-size:12.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ac)}
+.pw h1{font-size:30px;line-height:1.08;font-weight:800;letter-spacing:-.045em;margin:7px 0 9px}
+.pw>.pt{font-size:14px;line-height:1.5;color:var(--mut)}
+.pmodes{display:flex;flex-direction:column;gap:8px;margin-top:2px}
+.pm{display:flex;flex-direction:column;gap:2px;text-align:left;padding:12px 14px;border:1px solid var(--line);border-radius:16px;background:var(--card);color:var(--ink);font:inherit;cursor:pointer}
+.pm b{font-size:14.5px;font-weight:700}
+.pm span{font-size:12px;color:var(--mut);line-height:1.35}
+.pm.on{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.pw>.btn{margin-top:22px}
 .me{margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
 .me .row{margin-top:8px}
 .dots{display:flex;gap:5px;margin-top:12px}
