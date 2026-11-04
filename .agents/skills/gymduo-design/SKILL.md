@@ -5,10 +5,14 @@ description: Use when designing or changing the GymDuo interface (assets/styles.
 
 # GymDuo design
 
-GymDuo is a mobile-first PWA for logging gym routines, sync, streaks and progress. Vanilla HTML/CSS/JS, one screen at a time, dark and light themes, Spanish copy. This skill is the source of truth for UI work; read `assets/styles.css` before changing anything.
+GymDuo is a mobile-first PWA for logging gym routines, sync, streaks and progress. "GymDuo" is a working name: the app will be renamed because it is not only for couples. Vanilla HTML/CSS/JS, one screen at a time, dark and light themes, Spanish copy. This skill is the source of truth for UI work; read `assets/styles.css` before changing anything.
 
 ## Product rules (non-negotiable)
 
+- **The name is provisional.** Never hardcode "GymDuo" in new copy, titles, manifest or share text: read it from one constant (`APP_NAME`) so the rename is a one-line change. Existing hardcoded uses (welcome screen, join-code text, `package.json`, `manifest.webmanifest`, `index.html` title) must move to that constant when touched.
+- **Group-neutral, not couple-only.** A space can be individual, a pair or a group of any size (couple, family, friends, a guest). Copy never says "pareja", "dúo", "compañero/a" or "la otra persona". Use "grupo", "espacio" and "código". Do not assume exactly two members in layouts, lists or avatars: design for 1, 2 and 5+.
+- **Joining is one step.** The sync code is the only thing needed to join. Show it large, copyable and shareable with one tap. Pasting a code opens the group directly, no account and no long form.
+- **Sync state is visible but quiet.** Show offline, pending-to-upload and synced with a small status in the header or settings, never a blocking modal. Training must always work without connection.
 - **No person names outside Entreno.** Inicio and Ajustes never show "Persona 1/2", avatars or "Entreno como". Names appear only in Entreno when the space has 2+ members, because sets are logged for each other.
 - **No second person.** Avoid "tú", "tu", "tus", "te", "ti" in UI copy. Prefer neutral labels: "Grupos", "Rutina", "Código", "La racha y el progreso no cambian".
 - **Inicio opens with a greeting, not a name:** `Buenos días / Buenas tardes / Buenas noches`, then the weekly streak and sessions done.
@@ -87,3 +91,17 @@ One family: Manrope, fallback system. `font-variant-numeric: tabular-nums` globa
 3. Finish animations before screenshots: `document.getAnimations().forEach(a=>{try{a.finish()}catch(e){}})`.
 4. Check console: only the expected Supabase 404 while tables are missing.
 5. Bump the service worker cache (`rutina-vN`) when CSS/JS change.
+
+## Visual polish (approved additions)
+
+Improve the look without changing structure or adding frameworks. One change at a time, and show the result before continuing.
+
+- **Libraries:** download files into the repo (never a CDN, the app must look the same offline). Allowed: Lucide icons (SVG), uPlot for charts, canvas-confetti. Bump the service worker cache (`rutina-vN`) when adding them.
+- **Icons:** replace loose characters and symbols in nav and buttons with Lucide SVG. One family, same stroke width everywhere. Emoji stay as content only.
+- **Charts:** weekly volume and per-exercise progress with uPlot, colored only with tokens (`--ac`, `--line`, `--mut`). No gradients or glow.
+- **Numbers lead:** weight and reps are the hero of each set row: larger size and weight, tabular figures. Still one big number per screen.
+- **Screen transitions:** View Transitions API with a fallback for browsers without support. Must respect `prefers-reduced-motion` and coexist with `enterAnim()` without doubling the animation.
+- **Motion with a cause:** a short check animation when a set is completed; a single confetti burst only when a personal record is beaten; `navigator.vibrate` (short) on set confirmation where supported.
+- **Empty states:** a simple inline SVG illustration plus one clear action, using tokens for color.
+- **Check before finishing:** no horizontal scroll at 320, 360 and 390 px; contrast in both themes; console clean.
+- **Do not** add gradients, glows, decorative blobs or stock illustrations. If a bolder look is wanted, change the rules above first, then build.
