@@ -1,86 +1,95 @@
-# GymDuo
+# Buddy
 
-[![Demo](https://img.shields.io/badge/Probar%20la%20app-4a3df0?style=for-the-badge)](https://mariahts.github.io/GymDuo/)
+[![Probar la app](https://img.shields.io/badge/Probar%20la%20app-4a3df0?style=for-the-badge)](https://mariahts.github.io/GymDuo/)
 
-PWA para registrar tus entrenamientos de fuerza y llevar la rutina compartida con tu compañero/a de gym.
+Buddy es una aplicación web progresiva (PWA) para registrar entrenamientos de fuerza y compartir la rutina con quienes entrenan al lado. Sirve para entrenar solo, en dúo, trío o grupo, y también para acompañar, hacer de spotter o supervisar la sesión de otra persona.
 
-Funciona en el móvil como una app (se puede instalar), guarda los datos en el propio dispositivo y, si quieres, sincroniza la rutina y los entrenos con otra persona en tiempo real.
+## Para quién
+
+- **Entrenar solo** — rutina y progreso propios, sin depender de nadie.
+- **Entrenar en grupo** — dúo, trío o equipo; cada persona mantiene su propio registro dentro del mismo espacio.
+- **Acompañar y spotear** — apuntar series y cuidar la técnica de quien entrena.
+- **Guiar (coach o familia)** — supervisar la sesión de otra persona sin mezclar sus datos con los propios.
 
 ## Funcionalidades
 
-**Rutina**
-- Crea tus días de entrenamiento y añade ejercicios con series, repeticiones mínimas y máximas.
-- Edita todo desde Inicio, sin pasar por los ajustes.
-- Cada espacio empieza vacío, con una rutina de ejemplo disponible si prefieres partir de una base.
+### Rutina
+- Editor de días y ejercicios con series, repeticiones mínimas y máximas.
+- Rutina propia por espacio; cada grupo conserva la suya.
+- Empieza vacía, con opción de cargar una rutina de ejemplo.
+- Cambio rápido de ejercicio: alternativas para el mismo grupo muscular si la máquina está ocupada o no hay material.
+- Sugerencias con IA opcional, con límite diario y caché para no gastar consultas.
 
-**Entrenamiento**
-- Marca cada serie al completarla y registra peso y repeticiones.
-- Temporizador de descanso integrado.
-- Botón ↻ para cambiar un ejercicio al momento si la máquina está ocupada, sin salir de la sesión.
-- Alternativas sugeridas según el grupo muscular, con versión local y versión generada por IA (con límite diario y caché para no gastar consultas).
-- Copia los datos de la última sesión para no repetir el cálculo.
+### Entrenamiento
+- Registro de peso y repeticiones por serie, con copia de la última sesión.
+- Descanso automático entre series y aviso al terminar.
+- Récords personales y 1RM estimado.
+- Racha semanal: cuenta cuando se alcanza la meta de días, no exige entrenar todos los días.
+- Un fueguito por cada día entrenado de la semana.
 
-**Progreso**
-- Volumen por semana, mejores marcas por ejercicio y 1RM estimado.
-- Rachas de entrenamiento y meta semanal.
-- Cierre de mes con informe listo para guardar o compartir.
+### Progreso
+- Volumen semanal y mensual.
+- Mejor serie por ejercicio y evolución de la fuerza estimada.
+- Estadísticas privadas de cada persona, aunque el espacio sea compartido.
+- Informe mensual listo para guardar o compartir.
 
-**Compartido**
-- Espacios individuales o en pareja/grupo.
-- Sincronización de rutina y registros mediante un código, con actualizaciones en tiempo real.
-- Sin registro obligatorio: la app funciona entera en local si no quieres sincronizar.
+### Compartido
+- Varios espacios separados: solo, dúo, trío o grupo.
+- Código o enlace para unirse al grupo; la configuración se carga al abrirlo.
+- Sincronización opcional; la app funciona igual sin conexión y sin cuenta.
+- Cada persona apunta sus series; también se pueden apuntar las de quien entrena sin móvil.
 
-**App**
-- Instalable en iOS y Android.
-- Funciona sin conexión gracias al service worker.
-- Tema claro/oscuro y diseño pensado para usarse con una mano en el gym.
+### App
+- Instalable en iOS y Android, con funcionamiento offline.
+- Tema claro y oscuro, acento por perfil y colores adaptados.
+- Sin registro obligatorio y sin nombres visibles fuera del entrenamiento.
+- Pantalla inicial de bienvenida con días por semana y objetivo.
+- Frase motivadora del día y distintivo al completar el entreno o la meta semanal.
 
 ## Cómo se usa
 
-1. Entra en la [demo](https://mariahts.github.io/GymDuo/) e instálala desde el navegador si quieres tenerla a mano.
-2. Crea tu rutina desde **Inicio → Mi rutina → Editar**.
-3. Durante el entreno, abre el día que toca, registra las series y deja que la app lleve el descanso y los récords.
-4. Consulta **Progreso** para ver la evolución del mes.
+1. **Bienvenida** — elegir entrenar solo o en grupo, días por semana y objetivo. Se guarda solo.
+2. **Rutina** — crearla desde cero o cargar la de ejemplo.
+3. **Entrenar** — apuntar peso y reps, descansar entre series y sustituir ejercicios si hace falta.
+4. **Progreso** — revisar volumen, mejores marcas y evolución.
 
 ## Stack
 
 | Capa | Tecnología |
 | --- | --- |
-| Interfaz | HTML, CSS y JavaScript vanilla, sin frameworks |
-| Persistencia | localStorage |
+| Interfaz | HTML, CSS y JavaScript vanilla |
+| Almacenamiento | localStorage |
 | Sincronización | Supabase (Postgres + Realtime) |
-| IA | Supabase Edge Functions + Groq |
-| Distribución | PWA con service worker, desplegada en GitHub Pages |
+| IA | Edge Function de Supabase con Groq |
+| PWA | Service Worker, manifest e iconos |
+| Despliegue | GitHub Pages |
 
 ## Estructura
 
 ```
-index.html                  Shell de la aplicación
-assets/styles.css           Sistema de diseño y estilos
-assets/app.js               Estado, vistas, sincronización y sugerencias
-sw.js                       Service worker (caché y modo offline)
-manifest.webmanifest        Manifest PWA
-supabase/schema.sql         Tablas, RLS y publicación realtime
-supabase/functions/suggest  Edge Function para la IA
-SETUP.md                    Guía técnica de desarrollo
+index.html                      Shell de la app
+assets/styles.css               Sistema visual y estilos
+assets/app.js                   Lógica de la aplicación
+sw.js                           Service Worker
+manifest.webmanifest            Metadatos PWA
+supabase/schema.sql             Tablas y políticas de sincronización
+supabase/functions/suggest/     Edge Function de sugerencias con IA
+SETUP.md                        Configuración técnica y despliegue
 ```
 
 ## Desarrollo
 
 ```bash
-npm start       # sirve la app en http://localhost:5173
-npm run check   # comprueba la sintaxis de assets/app.js
+npm start        # servidor local
+npm run check    # comprobación de sintaxis
 ```
 
-La configuración de Supabase, la función de IA y el despliegue están explicados en [SETUP.md](SETUP.md).
+La configuración de Supabase, la función de IA y el despliegue están detallados en [SETUP.md](SETUP.md).
 
 ## Arquitectura
 
-- Aplicación completamente cliente, sin paso de build: HTML, una hoja de estilos y un único script con el estado y las vistas.
-- Sincronización opcional basada en un identificador de espacio compartido; los cambios se propagan por Realtime y se aplican solo si son más recientes que el estado local, lo que permite entrenar sin conexión y reconciliar al volver.
-- La generación de alternativas ocurre en el servidor: el cliente nunca maneja claves de API. Si la función no está disponible, la app recurre a un catálogo local de ejercicios.
-- Caché por ejercicio y límite diario de consultas para mantener el coste de la IA bajo control.
+Aplicación de una sola página sin frameworks. El estado vive en localStorage y se sincroniza por espacios mediante Supabase; la interfaz se repinta desde un único `render()`. Cada espacio guarda rutina, registros e historial, y la sincronización es opcional: sin conexión todo sigue funcionando en local.
 
 ## Licencia
 
-Distribuido bajo licencia [MIT](LICENSE).
+MIT.

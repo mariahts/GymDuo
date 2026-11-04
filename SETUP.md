@@ -1,6 +1,6 @@
 # Guía de desarrollo
 
-Documentación técnica para ejecutar, configurar y desplegar GymDuo.
+Documentación técnica para ejecutar, configurar y desplegar Buddy.
 
 ## Requisitos
 

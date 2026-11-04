@@ -1,8 +1,8 @@
 {
-  "name": "gymduo",
+  "name": "buddy",
   "version": "1.0.0",
   "private": true,
-  "description": "PWA para registrar entrenamientos de fuerza en pareja o en solitario",
+  "description": "PWA de entrenamiento para entrenar solo, en grupo, acompañar o guiar a quien entrena",
   "homepage": "https://mariahts.github.io/GymDuo/",
   "repository": {
     "type": "git",
