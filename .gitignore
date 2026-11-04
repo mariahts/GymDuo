@@ -4,3 +4,6 @@ Thumbs.db
 *.log
 .env
 supabase/.temp/
+.agents/skills/impeccable/
+.agents/skills/stageshow/
+skills-lock.json
