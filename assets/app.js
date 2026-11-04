@@ -294,7 +294,7 @@ else if(a=="col"){C.c[b.dataset.p]=+b.dataset.v;render()}
 else if(a=="ad"){R.push({d:"Día "+(R.length+1),id:uid(),x:[]});render()}
 else if(a=="ax"){R[+b.dataset.di].x.push(["Nuevo ejercicio","3 x 8-12",uid()]);render()}
 else if(a=="dd"||a=="dx"){if(arm2!==b){arm2=b;b.textContent="¿Seguro?";return}arm2=null;const di=+b.dataset.di;if(a=="dd"){R.splice(di,1)}else R[di].x.splice(+b.dataset.i,1);render()}
-else if(a=="shc"){const lk=location.origin+location.pathname+"#j="+S.code,tx="Únete a mi rutina en Rutina Gym: "+lk;try{navigator.share({text:tx}).catch(()=>{})}catch(e){try{navigator.clipboard.writeText(tx);b.textContent="Enlace copiado"}catch(x){}}}
+else if(a=="shc"){const lk=location.origin+location.pathname+"#j="+S.code,tx="Invitaci\u00f3n al grupo de "+APP_NAME+": "+lk;try{navigator.share({text:tx}).catch(()=>{})}catch(e){try{navigator.clipboard.writeText(tx);b.textContent="Enlace copiado"}catch(x){}}}
 else if(a=="sc"){const v=document.getElementById("cd").value.replace(/[^A-Za-z0-9_-]/g,"");if(v.length<16){b.textContent="Mínimo 16 letras o números";return}joinSpace(v)}
 else if(a=="cl"){closeMonth()}
 else if(a=="send"){location.href="mailto:"+(S.mail||"")+"?subject="+encodeURIComponent("Rutina · "+mo())+"&body="+encodeURIComponent(shown)}
@@ -307,5 +307,6 @@ else if(a=="imp"){try{const j=JSON.parse($("#bk").value);if(j.L){L=j.L;if(j.H)H=
 document.addEventListener("input",ev=>{const t=ev.target,fl=t.dataset.f;if(!fl)return;const row=t.closest(".set"),card=t.closest(".card"),e=ensure(+card.dataset.i);if(row)e.s[+row.dataset.j][fl]=t.value;else e[fl]=t.value;if(row&&(fl=="k"||fl=="r")){autoX(e.s[+row.dataset.j]);afterEdit(row,e,card)}save()});
 wz=S.wzErr?1:(S.startWz||0);if(okN(C.n.a))wzMe=C.n.a;if(!S.me)S.me=S.p;S.tab=S.setup?"ini":S.tab;P.forEach(p=>{lastStr[p]=str(p)});lastCfg=cfgStr();S.w=autoW();try{render()}catch(err){document.getElementById("main").innerHTML='<div class="card"><h2>Error</h2><p>'+String(err&&err.message||err)+'</p></div>'}
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState=="hidden")pushNow()});addEventListener("pagehide",pushNow);try{matchMedia("(prefers-color-scheme: dark)").addEventListener("change",render)}catch(e){}
+const jc=((location.hash.match(/#j=([A-Za-z0-9_-]{16,})/)||[])[1]||new URLSearchParams(location.search).get("c")||"").replace(/[^A-Za-z0-9_-]/g,"");if(jc.length>=16&&jc!==S.code){history.replaceState(null,"",location.pathname);joinSpace(jc)}
 initSync();addEventListener("online",()=>{if(!fb)initSync()});if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
 if(globalThis.__pend){const f=globalThis.__pend;globalThis.__pend=null;f()}
