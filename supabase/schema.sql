@@ -1,4 +1,4 @@
--- GymDuo · esquema para Supabase
+-- GymBuddy · esquema para Supabase
 -- Ejecuta todo esto en el SQL Editor de tu proyecto (una sola vez).
 
 create table if not exists public.spaces (

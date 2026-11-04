@@ -1,15 +1,15 @@
-# Buddy
+# GymBuddy
 
-[![Probar la app](https://img.shields.io/badge/Probar%20la%20app-4a3df0?style=for-the-badge)](https://mariahts.github.io/GymDuo/)
+[![Probar la app](https://img.shields.io/badge/Probar%20la%20app-1E293B?style=for-the-badge)](https://mariahts.github.io/GymDuo/)
 
-Buddy es una aplicación web progresiva (PWA) para registrar entrenamientos de fuerza y compartir la rutina con quienes entrenan al lado. Sirve para entrenar solo, en dúo, trío o grupo, y también para acompañar, hacer de spotter o supervisar la sesión de otra persona.
+GymBuddy es una aplicación web progresiva (PWA) para registrar entrenamientos de fuerza y compartir la rutina con quienes entrenan al lado. Sirve para entrenar solo, en dúo, trío o grupo, y también para acompañar, hacer de spotter o supervisar la sesión de otra persona.
 
 ## Para quién
 
-- **Entrenar solo** — rutina y progreso propios, sin depender de nadie.
-- **Entrenar en grupo** — dúo, trío o equipo; cada persona mantiene su propio registro dentro del mismo espacio.
-- **Acompañar y spotear** — apuntar series y cuidar la técnica de quien entrena.
-- **Guiar (coach o familia)** — supervisar la sesión de otra persona sin mezclar sus datos con los propios.
+- **Entrenar solo** � rutina y progreso propios, sin depender de nadie.
+- **Entrenar en grupo** � dúo, trío o equipo; cada persona mantiene su propio registro dentro del mismo espacio.
+- **Acompañar y spotear** � apuntar series y cuidar la técnica de quien entrena.
+- **Guiar (coach o familia)** � supervisar la sesión de otra persona sin mezclar sus datos con los propios.
 
 ## Funcionalidades
 
@@ -48,10 +48,10 @@ Buddy es una aplicación web progresiva (PWA) para registrar entrenamientos de f
 
 ## Cómo se usa
 
-1. **Bienvenida** — elegir entrenar solo o en grupo, días por semana y objetivo. Se guarda solo.
-2. **Rutina** — crearla desde cero o cargar la de ejemplo.
-3. **Entrenar** — apuntar peso y reps, descansar entre series y sustituir ejercicios si hace falta.
-4. **Progreso** — revisar volumen, mejores marcas y evolución.
+1. **Bienvenida** � elegir entrenar solo o en grupo, días por semana y objetivo. Se guarda solo.
+2. **Rutina** � crearla desde cero o cargar la de ejemplo.
+3. **Entrenar** � apuntar peso y reps, descansar entre series y sustituir ejercicios si hace falta.
+4. **Progreso** � revisar volumen, mejores marcas y evolución.
 
 ## Stack
 

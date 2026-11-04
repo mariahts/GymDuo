@@ -1,4 +1,4 @@
-// GymDuo · función de IA para sugerir ejercicios alternativos.
+// GymBuddy · función de IA para sugerir ejercicios alternativos.
 // Despliegue: Supabase → Edge Functions → Create function "suggest" → pega este código
 // y añade el secreto GROQ_API_KEY (gratis en https://console.groq.com/keys).
 //

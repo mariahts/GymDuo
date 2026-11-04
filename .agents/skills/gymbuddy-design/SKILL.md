@@ -1,15 +1,15 @@
 ---
-name: gymduo-design
-description: Use when designing or changing the GymDuo interface (assets/styles.css, markup in assets/app.js, UI copy) to keep its visual system, mobile layout and product rules consistent.
+name: gymbuddy-design
+description: Use when designing or changing the GymBuddy interface (assets/styles.css, markup in assets/app.js, UI copy) to keep its visual system, mobile layout and product rules consistent.
 ---
 
-# GymDuo design
+# GymBuddy design
 
-GymDuo is a mobile-first PWA for logging gym routines, sync, streaks and progress. "GymDuo" is a working name: the app will be renamed because it is not only for couples. Vanilla HTML/CSS/JS, one screen at a time, dark and light themes, Spanish copy. This skill is the source of truth for UI work; read `assets/styles.css` before changing anything.
+GymBuddy is a mobile-first PWA for logging gym routines, sync, streaks and progress. "GymBuddy" is a working name: the app will be renamed because it is not only for couples. Vanilla HTML/CSS/JS, one screen at a time, dark and light themes, Spanish copy. This skill is the source of truth for UI work; read `assets/styles.css` before changing anything.
 
 ## Product rules (non-negotiable)
 
-- **The name is provisional.** Never hardcode "GymDuo" in new copy, titles, manifest or share text: read it from one constant (`APP_NAME`) so the rename is a one-line change. Existing hardcoded uses (welcome screen, join-code text, `package.json`, `manifest.webmanifest`, `index.html` title) must move to that constant when touched.
+- **The name is provisional.** Never hardcode "GymBuddy" in new copy, titles, manifest or share text: read it from one constant (`APP_NAME`) so the rename is a one-line change. Existing hardcoded uses (welcome screen, join-code text, `package.json`, `manifest.webmanifest`, `index.html` title) must move to that constant when touched.
 - **Group-neutral, not couple-only.** A space can be individual, a pair or a group of any size (couple, family, friends, a guest). Copy never says "pareja", "dúo", "compañero/a" or "la otra persona". Use "grupo", "espacio" and "código". Do not assume exactly two members in layouts, lists or avatars: design for 1, 2 and 5+.
 - **Joining is one step.** The sync code is the only thing needed to join. Show it large, copyable and shareable with one tap. Pasting a code opens the group directly, no account and no long form.
 - **Sync state is visible but quiet.** Show offline, pending-to-upload and synced with a small status in the header or settings, never a blocking modal. Training must always work without connection.
